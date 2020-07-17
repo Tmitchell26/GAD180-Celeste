@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     private float moveInput;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     private bool facingRight = true;
 
@@ -25,6 +25,12 @@ public class PlayerController : MonoBehaviour
     bool wallSliding;
     public float wallSlidingSpeed;
 
+    public float dashDistance = 15f;
+    bool isDashing;
+    float doubleTapTime;
+    KeyCode lastKeyCode;
+
+    public float gravity = 3f;
 
     private void Start()
     {
@@ -33,12 +39,71 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        moveInput = Input.GetAxis("Horizontal");
+
+        // Dashing left 
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            if (doubleTapTime > Time.time && lastKeyCode == KeyCode.A)
+            {
+                StartCoroutine(Dash(-1f));
+            }
+            else
+            {
+                doubleTapTime = Time.time + 0.5f;
+            }
+
+            lastKeyCode = KeyCode.A;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if (doubleTapTime > Time.time && lastKeyCode == KeyCode.LeftArrow)
+            {
+                StartCoroutine(Dash(-1f));
+            }
+            else
+            {
+                doubleTapTime = Time.time + 0.5f;
+            }
+
+            lastKeyCode = KeyCode.LeftArrow;
+        }
+
+        // Dashing Right 
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (doubleTapTime > Time.time && lastKeyCode == KeyCode.D)
+            {
+                StartCoroutine(Dash(1f));
+            }
+            else
+            {
+                doubleTapTime = Time.time + 0.5f;
+            }
+
+            lastKeyCode = KeyCode.D;
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if (doubleTapTime > Time.time && lastKeyCode == KeyCode.RightArrow)
+            {
+                StartCoroutine(Dash(1f));
+            }
+            else
+            {
+                doubleTapTime = Time.time + 0.5f;
+            }
+
+            lastKeyCode = KeyCode.RightArrow;
+        }
+
+
         if (isGrounded == true)
         {
             extraJumps = extraJumpValue;
         }
 
-        if(Input.GetButtonDown("Jump") && extraJumps > 0)
+        if (Input.GetButtonDown("Jump") && extraJumps > 0)
         {
             rb.velocity = Vector2.up * jumpForce;
             extraJumps--;
@@ -68,10 +133,12 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-       
-        moveInput = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
+        if (!isDashing)
+        {
+            rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+        }
+        
         if (facingRight == false && moveInput > 0)
         {
             Flip();
@@ -88,5 +155,18 @@ public class PlayerController : MonoBehaviour
         Vector3 Scaler = transform.localScale;
         Scaler.x *= -1;
         transform.localScale = Scaler;
+    }
+
+    IEnumerator Dash(float direction)
+    {
+        isDashing = true;
+        rb.velocity = new Vector2(rb.velocity.x, 0f);
+        rb.AddForce(new Vector2(dashDistance * direction, 0f), ForceMode2D.Impulse);
+        rb.gravityScale = 0;
+        Debug.Log(gravity);
+        yield return new WaitForSeconds(0.4f);
+        isDashing = false;
+        rb.gravityScale = gravity;
+        Debug.Log(gravity);
     }
 }
