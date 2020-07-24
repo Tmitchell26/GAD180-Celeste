@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float jumpForce;
     private float moveInput;
+    public int health;
+    public int playerDamage;
 
     public Rigidbody2D rb;
 
@@ -163,10 +165,41 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.AddForce(new Vector2(dashDistance * direction, 0f), ForceMode2D.Impulse);
         rb.gravityScale = 0;
-        Debug.Log(gravity);
         yield return new WaitForSeconds(0.4f);
         isDashing = false;
         rb.gravityScale = gravity;
-        Debug.Log(gravity);
+    }
+
+    // function to simulate the player taking damage
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            PlayerManager.instance.KillPlayer();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        EnemyStats enemy = collision.collider.GetComponent<EnemyStats>();
+        if (enemy != null)
+        {
+            foreach (ContactPoint2D point in collision.contacts)
+            {
+                if (point.normal.y >= 0.9f)
+                {
+                    Vector2 velocity = rb.velocity;
+                    velocity.y = jumpForce;
+                    rb.velocity = velocity;
+                    enemy.TakeDamage(playerDamage);
+                }
+                else
+                {
+                    TakeDamage(enemy.gameObject.GetComponent<EnemyStats>().enemyDamage);
+                }
+            }
+        }
     }
 }
