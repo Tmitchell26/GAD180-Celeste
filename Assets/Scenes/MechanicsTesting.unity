@@ -1367,6 +1367,7 @@ GameObject:
   - component: {fileID: 1076339876}
   - component: {fileID: 1076339874}
   - component: {fileID: 1076339877}
+  - component: {fileID: 1076339878}
   m_Layer: 10
   m_Name: player
   m_TagString: Untagged
@@ -1530,6 +1531,19 @@ MonoBehaviour:
   wallSlidingSpeed: 1
   dashDistance: 0.001
   gravity: 3
+--- !u!114 &1076339878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076339871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f917a0af7ceb584392250e888b7ae4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallMultiplier: 2.5
 --- !u!1 &1160490909
 GameObject:
   m_ObjectHideFlags: 0

@@ -43,62 +43,17 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = Input.GetAxis("Horizontal");
 
-        // Dashing left 
-        if (Input.GetKeyDown(KeyCode.A))
+        // Dashing Left
+        if (facingRight == false && Input.GetButtonDown("Dash"))
         {
-            if (doubleTapTime > Time.time && lastKeyCode == KeyCode.A)
-            {
-                StartCoroutine(Dash(-1f));
-            }
-            else
-            {
-                doubleTapTime = Time.time + 0.5f;
-            }
-
-            lastKeyCode = KeyCode.A;
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            if (doubleTapTime > Time.time && lastKeyCode == KeyCode.LeftArrow)
-            {
-                StartCoroutine(Dash(-1f));
-            }
-            else
-            {
-                doubleTapTime = Time.time + 0.5f;
-            }
-
-            lastKeyCode = KeyCode.LeftArrow;
+            StartCoroutine(Dash(-1f));
         }
 
         // Dashing Right 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            if (doubleTapTime > Time.time && lastKeyCode == KeyCode.D)
-            {
+        if (facingRight == true && Input.GetButtonDown("Dash"))
+        {  
                 StartCoroutine(Dash(1f));
-            }
-            else
-            {
-                doubleTapTime = Time.time + 0.5f;
-            }
-
-            lastKeyCode = KeyCode.D;
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            if (doubleTapTime > Time.time && lastKeyCode == KeyCode.RightArrow)
-            {
-                StartCoroutine(Dash(1f));
-            }
-            else
-            {
-                doubleTapTime = Time.time + 0.5f;
-            }
-
-            lastKeyCode = KeyCode.RightArrow;
-        }
-
 
         if (isGrounded == true)
         {

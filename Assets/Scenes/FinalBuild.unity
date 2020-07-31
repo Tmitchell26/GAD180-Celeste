@@ -292,6 +292,7 @@ GameObject:
   - component: {fileID: 1548553287}
   - component: {fileID: 1548553286}
   - component: {fileID: 1548553285}
+  - component: {fileID: 1548553291}
   m_Layer: 10
   m_Name: player
   m_TagString: Player
@@ -313,7 +314,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   jumpForce: 6
-  rb: {fileID: 0}
+  health: 0
+  playerDamage: 0
+  rb: {fileID: 1548553288}
   groundCheck: {fileID: 231456585}
   checkRadius: 0.2
   whatIsGround:
@@ -453,6 +456,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1548553291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548553284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f917a0af7ceb584392250e888b7ae4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallMultiplier: 2.5
 --- !u!1 &1658736139
 GameObject:
   m_ObjectHideFlags: 0
