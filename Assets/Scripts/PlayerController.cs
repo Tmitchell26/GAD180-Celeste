@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     float doubleTapTime;
     KeyCode lastKeyCode;
 
+    public Animator animation;
+
     public float gravity = 3f;
 
     private void Start()
@@ -43,6 +45,8 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = Input.GetAxis("Horizontal");
 
+        animation.SetFloat("Speed", Mathf.Abs(moveInput));
+       
         // Dashing Left
         if (facingRight == false && Input.GetButtonDown("Dash"))
         {
@@ -98,11 +102,11 @@ public class PlayerController : MonoBehaviour
         
         if (facingRight == false && moveInput > 0)
         {
-            Flip();
+            Flip(); 
         }
         else if (facingRight == true && moveInput < 0)
         {
-            Flip();
+            Flip();  
         }
     }
 
