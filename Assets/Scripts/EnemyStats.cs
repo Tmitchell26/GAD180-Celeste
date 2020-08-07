@@ -6,6 +6,8 @@ public class EnemyStats : MonoBehaviour
 {
     public int health;
     public int enemyDamage;
+    public Animator animator;
+    public float seconds; 
 
     // function to simulate the player taking damage
     public void TakeDamage(int damage)
@@ -14,8 +16,8 @@ public class EnemyStats : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(this.gameObject);
+            animator.SetBool("isDead", true);
+            Destroy(this.gameObject,seconds);
         }
     }
-
 }

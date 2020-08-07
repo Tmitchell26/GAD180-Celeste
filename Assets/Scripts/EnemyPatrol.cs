@@ -7,7 +7,7 @@ public class EnemyPatrol : MonoBehaviour
     public float speed;
     private float waitTime;
     public float startWaitTime;
-    //public Animator animator;
+    public Animator animator;
 
 
     public Transform[] moveSpots;
@@ -22,7 +22,7 @@ public class EnemyPatrol : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
-        //animator.SetBool("isWalking", true);
+        animator.SetBool("isWalking", true);
 
         if (Vector3.Distance(transform.position, moveSpots[randomSpot].position) < 0.2f)
         {
@@ -34,7 +34,7 @@ public class EnemyPatrol : MonoBehaviour
             else
             {
                 waitTime -= Time.deltaTime;
-               //animator.SetBool("isWalking", false);
+               animator.SetBool("isWalking", false);
             }
         }
     }

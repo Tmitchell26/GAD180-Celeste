@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     float doubleTapTime;
     KeyCode lastKeyCode;
 
-    public Animator animation;
+    public Animator animator;
 
     public float gravity = 3f;
 
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = Input.GetAxis("Horizontal");
 
-        animation.SetFloat("Speed", Mathf.Abs(moveInput));
+        animator.SetFloat("Speed", Mathf.Abs(moveInput));
        
         // Dashing Left
         if (facingRight == false && Input.GetButtonDown("Dash"))
