@@ -312,10 +312,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a4962a77c7b6b47a47ff0a62cfd497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  jumpForce: 6
-  health: 0
-  playerDamage: 0
+  speed: 4
+  jumpForce: 8
+  health: 1
+  playerDamage: 1
   rb: {fileID: 1548553288}
   groundCheck: {fileID: 231456585}
   checkRadius: 0.2
@@ -325,7 +325,7 @@ MonoBehaviour:
   extraJumpValue: 1
   frontCheck: {fileID: 2105579318}
   wallSlidingSpeed: 1
-  dashDistance: 15
+  dashDistance: 0.0006
   gravity: 3
 --- !u!58 &1548553286
 CircleCollider2D:
@@ -586,7 +586,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658736139}
   m_LocalRotation: {x: -0, y: -0, z: -0.99999726, w: -0.002350408}
-  m_LocalPosition: {x: 6, y: 0, z: 0}
+  m_LocalPosition: {x: 6.2, y: 0.8, z: 0}
   m_LocalScale: {x: 0.016290925, y: 0.27482504, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
