@@ -32,6 +32,10 @@ public class PlayerController : MonoBehaviour
     float doubleTapTime;
     KeyCode lastKeyCode;
 
+    Material material;
+    bool isDissolving = false;
+    float fade = 1f;
+
     public Animator animator;
 
     public float gravity = 3f;
@@ -39,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        material = GetComponent<SpriteRenderer>().material;
     }
 
     private void Update()
@@ -90,6 +95,8 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
         }
 
+
+
     }
     private void FixedUpdate()
     {
@@ -107,6 +114,20 @@ public class PlayerController : MonoBehaviour
         else if (facingRight == true && moveInput < 0)
         {
             Flip();  
+        }
+
+        if (isDissolving)
+        {
+            fade -= Time.deltaTime;
+
+            if (fade <= 0f)
+            {
+                fade = 0f;
+                isDissolving = false;
+            }
+
+            //set the property 
+            material.SetFloat("_Fade", fade);
         }
     }
 
@@ -133,9 +154,10 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-
+        
         if (health <= 0)
         {
+            isDissolving = true;
             PlayerManager.instance.KillPlayer();
         }
     }
