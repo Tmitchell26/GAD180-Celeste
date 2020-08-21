@@ -66,17 +66,21 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded == true)
         {
+            Debug.Log("Hitting ground");
+            animator.ResetTrigger("isJumping");
             extraJumps = extraJumpValue;
         }
 
-        if (Input.GetButtonDown("Jump") && extraJumps > 0)
+        if (Input.GetButtonDown("Jump"))
+        {
+            animator.SetTrigger("isJumping");
+            //animator.SetFloat("Speed", Mathf.Abs(0));
+        }
+
+        if (Input.GetButtonDown("Jump") && (extraJumps > 0 || isGrounded == true))
         {
             rb.velocity = Vector2.up * jumpForce;
             extraJumps--;
-        }
-        else if (Input.GetButtonDown("Jump") && extraJumps == 0 && isGrounded == true)
-        {
-            rb.velocity = Vector2.up * jumpForce;
         }
 
         isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
@@ -105,6 +109,7 @@ public class PlayerController : MonoBehaviour
         if (!isDashing)
         {
             rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+            animator.ResetTrigger("isDashing");
         }
         
         if (facingRight == false && moveInput > 0)
@@ -145,9 +150,11 @@ public class PlayerController : MonoBehaviour
         isDashing = true;
         rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.AddForce(new Vector2(dashDistance * direction, 0f), ForceMode2D.Impulse);
+        animator.SetTrigger("isDashing");
         rb.gravityScale = 0;
         yield return new WaitForSeconds(0.4f);
         isDashing = false;
+        animator.ResetTrigger("isDashing");
         rb.gravityScale = gravity;
     }
 
