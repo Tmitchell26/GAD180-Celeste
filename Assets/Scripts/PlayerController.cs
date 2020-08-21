@@ -123,6 +123,7 @@ public class PlayerController : MonoBehaviour
             if (fade <= 0f)
             {
                 fade = 0f;
+                PlayerManager.instance.KillPlayer();
                 isDissolving = false;
             }
 
@@ -158,7 +159,7 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
         {
             isDissolving = true;
-            PlayerManager.instance.KillPlayer();
+            SetAllCollidersStatus(false);
         }
     }
 
@@ -181,6 +182,14 @@ public class PlayerController : MonoBehaviour
                     TakeDamage(enemy.gameObject.GetComponent<EnemyStats>().enemyDamage);
                 }
             }
+        }
+    }
+
+    public void SetAllCollidersStatus(bool active)
+    {
+        foreach (Collider c in GetComponents<Collider>())
+        {
+            c.enabled = active;
         }
     }
 }

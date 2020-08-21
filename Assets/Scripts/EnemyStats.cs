@@ -17,7 +17,16 @@ public class EnemyStats : MonoBehaviour
         if (health <= 0)
         {
             animator.SetBool("isDead", true);
+            SetAllCollidersStatus(false);
             Destroy(this.gameObject,seconds);
+        }
+    }
+
+    public void SetAllCollidersStatus(bool active)
+    {
+        foreach (Collider c in GetComponents<Collider>())
+        {
+            c.enabled = active;
         }
     }
 }
