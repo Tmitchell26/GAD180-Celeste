@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1160,6 +1160,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6532681804459621362, guid: 1d2f6929bf9c59e44b416984cc1d9961,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.015387833
+      objectReference: {fileID: 0}
+    - target: {fileID: 6532681804459621362, guid: 1d2f6929bf9c59e44b416984cc1d9961,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.20535731
+      objectReference: {fileID: 0}
     - target: {fileID: 6532681804459621363, guid: 1d2f6929bf9c59e44b416984cc1d9961,
         type: 3}
       propertyPath: m_Name
@@ -1591,7 +1601,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2064937517
-  m_SortingLayer: -4
+  m_SortingLayer: -5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 95c311ff83a63c24fa6708c97ed3adc4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1947,10 +1957,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.007226467, y: -0.010380566}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1961,7 +1971,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 0.62554705, y: 0.61923885}
   m_EdgeRadius: 0
 --- !u!114 &1561160381
 MonoBehaviour:
@@ -2034,8 +2044,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561160379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8722, y: 1.5924001, z: 0}
-  m_LocalScale: {x: 0.97822315, y: 1.0100975, z: 0.51085}
+  m_LocalPosition: {x: -1.8757, y: 1.5924001, z: 0}
+  m_LocalScale: {x: 0.9673013, y: 1.0100975, z: 0.51085}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
