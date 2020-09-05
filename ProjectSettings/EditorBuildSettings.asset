@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Art&SpriteTesting.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: aa65acbfa5118b34a8e7d125b536f5c2
+  - enabled: 1
+    path: Assets/Scenes/Dialogue 2.0.unity
+    guid: 58561a68c2f87874aaae0aa49d0ba602
   - enabled: 1
     path: Assets/Scenes/FinalBuild.unity
     guid: f8892ee849802474da68b8fc52ac16b7
@@ -32,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FinalBuild Finale.unity
     guid: a8a0382161dea264aaa25ab45ac7518f
+  - enabled: 1
+    path: Assets/Scenes/Exit Menu.unity
+    guid: 8debdf4aa5089864386cb84f7313641b
   m_configObjects: {}
